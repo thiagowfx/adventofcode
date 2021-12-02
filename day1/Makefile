@@ -17,4 +17,7 @@ test: $(TARGET)
 clean:
 	$(RM) $(TARGET) $(OUTPUT)
 
+python:
+	./$(TARGET).py $(INPUT) | tee $(OUTPUT)
+
 .PHONY: all clean

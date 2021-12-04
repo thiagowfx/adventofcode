@@ -1,4 +1,4 @@
-DAY=2
+DAY=3
 
 INPUT = day$(DAY)/input.txt
 OUTPUT = day$(DAY)/output.txt

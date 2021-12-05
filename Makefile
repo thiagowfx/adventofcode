@@ -1,8 +1,16 @@
-DAY=3
+DAY ?= 4
+DEBUG ?= 0
 
+SAMPLE = day$(DAY)/sample.txt
 INPUT = day$(DAY)/input.txt
 OUTPUT = day$(DAY)/output.txt
 TARGET = day$(DAY)/main
+
+ifeq ($(DEBUG), 0)
+	ACTUAL_INPUT = $(INPUT)
+else
+	ACTUAL_INPUT = $(SAMPLE)
+endif
 
 CXXFLAGS = -g -Wall -Werror
 
@@ -12,9 +20,14 @@ clean:
 	$(RM) $(TARGET)
 
 cpp: $(TARGET)
-	./$(TARGET) $(INPUT) | tee $(OUTPUT)
+	./$(TARGET) $(ACTUAL_INPUT) | tee $(OUTPUT)
+
+new:
+	mkdir day$(DAY)
+	touch $(INPUT) $(SAMPLE) $(TARGET).py
+	chmod +x $(TARGET).py
 
 python:
-	./$(TARGET).py $(INPUT) | tee $(OUTPUT)
+	./$(TARGET).py $(ACTUAL_INPUT) | tee $(OUTPUT)
 
-.PHONY: all clean cpp python
+.PHONY: all clean cpp new python

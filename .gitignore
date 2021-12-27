@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/c++,python,vim
-# Edit at https://www.toptal.com/developers/gitignore?templates=c++,python,vim
+# Created by https://www.toptal.com/developers/gitignore/api/c++,direnv,python,vim
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,direnv,python,vim
 
 ### C++ ###
 # Prerequisites
@@ -35,6 +35,10 @@
 *.exe
 *.out
 *.app
+
+### direnv ###
+.direnv
+.envrc
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -196,4 +200,4 @@ tags
 # Persistent undo
 [._]*.un~
 
-# End of https://www.toptal.com/developers/gitignore/api/c++,python,vim
+# End of https://www.toptal.com/developers/gitignore/api/c++,direnv,python,vim

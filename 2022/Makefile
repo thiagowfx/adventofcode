@@ -1,5 +1,5 @@
 DAY ?= 1
-DEBUG ?= 0
+DEBUG ?= 1
 
 SAMPLE = day$(DAY)/sample.txt
 INPUT = day$(DAY)/input.txt

@@ -11,9 +11,16 @@ def main():
     lines = [int(line) if line != "" else line for line in lines]
 
     # [1, 2, '', 3] -> [[1, 2], [3]]
-    groups = [list(group) for key, group in itertools.groupby(lines, lambda a: a == "") if not key]
+    groups = [list(group) for key, group in itertools.groupby(
+        lines, lambda a: a == "") if not key]
 
-    print(max([sum(group) for group in groups]))
+    # Part 1
+    calories = [sum(group) for group in groups]
+
+    print(max(calories))
+
+    # Part 2
+    print(sum(sorted(calories, reverse=True)[:3]))
 
 
 if __name__ == '__main__':

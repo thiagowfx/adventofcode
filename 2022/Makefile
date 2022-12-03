@@ -1,4 +1,4 @@
-DAY ?= 1
+DAY ?= 2
 DEBUG ?= 1
 
 SAMPLE = day$(DAY)/sample.txt

@@ -1,4 +1,4 @@
-DAY ?= 2
+DAY ?= 3
 DEBUG ?= 1
 
 SAMPLE = day$(DAY)/sample.txt
@@ -15,12 +15,9 @@ endif
 all:
 	./$(TARGET).py $(ACTUAL_INPUT) | tee $(OUTPUT)
 
-clean:
-	$(RM) $(TARGET)
-
 new:
 	mkdir day$(DAY)
 	touch $(INPUT) $(SAMPLE) $(TARGET).py
 	chmod +x $(TARGET).py
 
-.PHONY: all clean new
+.PHONY: all new

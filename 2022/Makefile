@@ -4,7 +4,8 @@ DEBUG ?= 1
 SAMPLE = day$(DAY)/sample.txt
 INPUT = day$(DAY)/input.txt
 OUTPUT = day$(DAY)/output.txt
-TARGET = day$(DAY)/main
+TARGET = day$(DAY)/main.py
+TEMPLATE = template.py
 
 ifeq ($(DEBUG), 0)
 	ACTUAL_INPUT = $(INPUT)
@@ -13,11 +14,11 @@ else
 endif
 
 all:
-	./$(TARGET).py $(ACTUAL_INPUT) | tee $(OUTPUT)
+	./$(TARGET) $(ACTUAL_INPUT) | tee $(OUTPUT)
 
 new:
 	mkdir day$(DAY)
-	touch $(INPUT) $(SAMPLE) $(TARGET).py
-	chmod +x $(TARGET).py
+	touch $(INPUT) $(SAMPLE)
+	cp $(TEMPLATE) $(TARGET)
 
 .PHONY: all new

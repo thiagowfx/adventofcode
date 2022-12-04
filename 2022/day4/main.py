@@ -11,11 +11,16 @@ def eitherContains(e1, e2):
         return 0
 
 
+def anyOverlap(e1, e2):
+    return int((e1[1] >= e2[0]) and (e1[0] <= e2[1]))
+
+
 def main():
     with open(sys.argv[1]) as input:
         lines = input.read().splitlines()
 
-    total = 0
+    totalEitherContains = 0
+    totalAnyOverlap = 0
 
     for line in lines:
         # [['2', '4'], ['6', '8']]
@@ -23,9 +28,14 @@ def main():
         # [2, 4], [6, 8]
         e1, e2 = list(map(int, e1)), list(map(int, e2))
 
-        total += eitherContains(e1, e2)
+        totalEitherContains += eitherContains(e1, e2)
+        totalAnyOverlap += anyOverlap(e1, e2)
 
-    print(total)
+    # Part 1
+    print(totalEitherContains)
+
+    # Part 2
+    print(totalAnyOverlap)
 
 
 if __name__ == '__main__':

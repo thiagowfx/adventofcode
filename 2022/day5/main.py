@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import itertools
 import sys
+from copy import deepcopy
 
 
 def parse_input(crates_unparsed):
@@ -35,16 +36,19 @@ def parse_input(crates_unparsed):
     return crates
 
 
-def move_crates(moves_unparsed, crates):
+def move_crates(moves_unparsed, crates, *, reverse):
     for move_unparsed in moves_unparsed:
         _, quantity, _, src, _, dst = move_unparsed.split(' ')
         quantity, src, dst = int(quantity), int(src), int(dst)
-        move_crate(crates, quantity, src, dst)
+        move_crate(crates, quantity, src, dst, reverse)
     return crates
 
 
-def move_crate(crates, quantity, src, dst):
-    crates[dst] += crates[src][(-1) * quantity:][::-1]
+def move_crate(crates, quantity, src, dst, reverse):
+    if reverse:
+        crates[dst] += crates[src][(-1) * quantity:][::-1]
+    else:
+        crates[dst] += crates[src][(-1) * quantity:]
     crates[src] = crates[src][:(-1) * quantity]
 
 
@@ -56,10 +60,14 @@ def main():
         lines, lambda a: a == "") if not key]
 
     crates = parse_input(crates_unparsed)
-    crates = move_crates(moves_unparsed, crates)
 
     # Part 1
-    print(''.join([value[-1] for value in crates.values()]))
+    crates_part1 = move_crates(moves_unparsed, deepcopy(crates), reverse=True)
+    print(''.join([value[-1] for value in crates_part1.values()]))
+
+    # Part 2
+    crates_part2 = move_crates(moves_unparsed, deepcopy(crates), reverse=False)
+    print(''.join([value[-1] for value in crates_part2.values()]))
 
 
 if __name__ == '__main__':

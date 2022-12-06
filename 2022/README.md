@@ -1,6 +1,6 @@
 # Advent of Code 2022 - My Solutions
 
-![Completion Status](https://img.shields.io/badge/stars%20⭐-9/50-yellow)
+![Completion Status](https://img.shields.io/badge/stars%20⭐-10/50-yellow)
 
 Santa's reindeer typically eat regular reindeer food, but they need a lot of
 magical energy to deliver presents on Christmas. For that, their favorite snack

@@ -10,18 +10,24 @@ def all_different(window):
     return not any(map(lambda x: x > 1, hash.values()))
 
 
+def find_marker(buffer, size):
+    for i in range(len(buffer) - (size - 1)):
+        window = buffer[i:i + size]
+        if (all_different(window)):
+            return i + size
+
+
 def main():
     with open(sys.argv[1]) as input:
         lines = input.read().splitlines()
 
     buffer = lines[0]
 
-    for i in range(len(buffer) - 3):
-        window = buffer[i:i + 4]
-        if (all_different(window)):
-            # Part 1
-            print(i + 4)
-            break
+    # Part 1
+    print(find_marker(buffer, 4))
+
+    # Part 2
+    print(find_marker(buffer, 14))
 
 
 if __name__ == '__main__':

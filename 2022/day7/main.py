@@ -49,8 +49,20 @@ def main():
             directory = '/'.join(components[:i])
             DIRECTORY_TO_SIZE[directory] += FILE_TO_SIZE[file]
 
+    # Minor fixes for '/' canonicalization
+    DIRECTORY_TO_SIZE['/'] = DIRECTORY_TO_SIZE['']
+    del DIRECTORY_TO_SIZE['']
+
     # Part 1
     print(sum([value for value in DIRECTORY_TO_SIZE.values() if value <= 100000]))
+
+    # Part 2
+    TOTAL_DISK = 70000000
+    USED_DISK = DIRECTORY_TO_SIZE['/']
+    AVAILABLE_DISK = TOTAL_DISK - USED_DISK
+
+    print(next(value for value in sorted(DIRECTORY_TO_SIZE.values())
+          if (AVAILABLE_DISK + value) >= 30000000))
 
 
 if __name__ == '__main__':

@@ -3,15 +3,16 @@ import itertools
 import sys
 
 DIRECTIONS = [
-    [-1, 0],
-    [+1, 0],
-    [0, -1],
-    [0, +1],
+    [-1, 0],  # left
+    [+1, 0],  # right
+    [0, -1],  # down
+    [0, +1],  # up
 ]
 
 
-def is_visible(lines, x, y):
-    this_tree = lines[x][y]
+def is_visible(lines, x, y, is_scenic):
+    this_tree = lines[y][x]
+    scenic = 1
 
     for direction in DIRECTIONS:
         visible = True
@@ -22,29 +23,35 @@ def is_visible(lines, x, y):
             next_y = y + step * direction[1]
 
             if 0 <= next_x < len(lines[0]) and 0 <= next_y < len(lines):
-                next_tree = lines[next_x][next_y]
+                next_tree = lines[next_y][next_x]
                 if next_tree >= this_tree:
                     visible = False
                     break
                 step += 1
             else:
+                step -= 1
                 break
 
-        if visible:
-            return True
+        scenic *= step
 
-    return False
+        if visible and not is_scenic:
+            return visible
+
+    return scenic if is_scenic else visible
 
 
-def compute_inner_visible_trees(lines):
+def compute_inner_visible_trees(lines, *, is_scenic):
     """
-    Cartesian product:
+    Cartesian product: [y][x]
     0 ---> x
     |
     |
   y v
     """
-    return sum(int(is_visible(lines, x, y)) for (x, y) in itertools.product(range(1, len(lines[0]) - 1), range(1, len(lines) - 1)))
+    if is_scenic:
+        return max(int(is_visible(lines, x, y, is_scenic)) for (x, y) in itertools.product(range(1, len(lines[0]) - 1), range(1, len(lines) - 1)))
+    else:
+        return sum(int(is_visible(lines, x, y, is_scenic)) for (x, y) in itertools.product(range(1, len(lines[0]) - 1), range(1, len(lines) - 1)))
 
 
 def main():
@@ -52,10 +59,12 @@ def main():
         lines = input.read().splitlines()
 
     outer_visible_trees = 2 * (len(lines) + len(lines[0])) - 4
-    inner_visible_trees = compute_inner_visible_trees(lines)
 
     # Part 1
-    print(outer_visible_trees + inner_visible_trees)
+    print(outer_visible_trees + compute_inner_visible_trees(lines, is_scenic=False))
+
+    # Part 2
+    print(compute_inner_visible_trees(lines, is_scenic=True))
 
 
 if __name__ == '__main__':

@@ -7,16 +7,35 @@ def main():
     with open(sys.argv[1]) as input:
         lines = input.read().splitlines()
 
-    prod = 0
+    prod = prod_two = 0
 
     for memory in lines:
-        matches = re.findall(r'mul\(\d+,\d+\)', memory)
+        ops = re.findall(r'mul\(\d+,\d+\)', memory)
 
-        for match in matches:
-            (f1, f2) = map(int, re.findall(r'\d+', match))
+        for op in ops:
+            (f1, f2) = map(int, re.findall(r'\d+', op))
             prod += f1 * f2
 
+    # part one
     print(prod)
+
+    enabled = True
+    for memory in lines:
+        ops = re.findall(r"mul\(\d+,\d+\)|do\(\)|don't\(\)", memory)
+
+        for op in ops:
+            if "don't" in op:
+                enabled = False
+            elif "do" in op:
+                enabled = True
+            elif 'mul' in op:
+                (f1, f2) = map(int, re.findall(r'\d+', op))
+
+                if enabled:
+                    prod_two += f1 * f2
+
+    # part two
+    print(prod_two)
 
 
 if __name__ == '__main__':

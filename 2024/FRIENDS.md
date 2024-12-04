@@ -4,3 +4,4 @@
 - https://github.com/lkhrs/advent-of-code
 - https://github.com/aranair/adventofcode
 - https://git.gay/iurirs/adventofcode
+- https://github.com/MichalPitr/adventofcode2024

@@ -1,3 +1,6 @@
 - https://github.com/leodag/adventofcode2024
 - https://github.com/elvisigkeit/adventofcode
 - https://github.com/beaquino/AC-2024
+- https://github.com/lkhrs/advent-of-code
+- https://github.com/aranair/adventofcode
+- https://git.gay/iurirs/adventofcode

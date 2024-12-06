@@ -25,6 +25,34 @@ def search_diagonal(matrix, keyword):
     return count
 
 
+def search_double_mas(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    count = 0
+
+    for i in range(1, rows - 1):
+        for j in range(1, cols - 1):
+            if matrix[i][j] != 'A':
+                continue
+
+            # look at a QWERTY keyboard to make sense of these variable names
+            q = matrix[i - 1][j - 1]
+            e = matrix[i - 1][j + 1]
+            z = matrix[i + 1][j - 1]
+            c = matrix[i + 1][j + 1]
+            edges = [q, e, z, c]
+
+            if edges.count('M') != 2 or edges.count('S') != 2:
+                continue
+
+            if q == e or q == z:
+                count += 1
+
+    return count
+
+
+
 def main():
     with open(sys.argv[1]) as input:
         lines = input.read().splitlines()
@@ -34,12 +62,11 @@ def main():
     # ['abcd', 'efgh', 'ijkl'] -> [['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j', 'k', 'l']]
     matrix = [list(line) for line in lines]
 
-    count = 0
-
-    count += search_horizontal(matrix, keyword) + search_vertical(matrix, keyword) + search_diagonal(matrix, keyword)
-
     # part one
-    print(count)
+    print(search_horizontal(matrix, keyword) + search_vertical(matrix, keyword) + search_diagonal(matrix, keyword))
+
+    # part two
+    print(search_double_mas(matrix))
 
 
 if __name__ == '__main__':

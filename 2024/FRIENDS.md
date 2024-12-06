@@ -5,3 +5,5 @@
 - https://github.com/aranair/adventofcode
 - https://git.gay/iurirs/adventofcode
 - https://github.com/MichalPitr/adventofcode2024
+- https://github.com/tylercrumpton/aoc-2024
+- https://github.com/mischief901/advent_code

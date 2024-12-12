@@ -20,6 +20,18 @@ def blink(stones):
 
     return stones_next
 
+def dp_blink(stones, times):
+    from functools import lru_cache
+
+    @lru_cache(maxsize=None)
+    def dp(stone: int, times: int) -> int:
+        if times == 0:
+            return 1
+
+        return sum([dp(stone, times - 1) for stone in blink([stone])])
+
+    return sum([dp(stone, times) for stone in stones])
+
 
 def main():
     with open(sys.argv[1]) as input:
@@ -32,6 +44,21 @@ def main():
 
     # part one
     print(len(stones))
+
+    # This is very slow, with an exponential complexity runtime.
+    # What did you expect?
+    #
+    # for i in range(50):  # 50 = 75 - 25
+    #     print(i)
+    #     stones = blink(stones)
+
+    # # part two
+    # print(len(stones))
+
+    stones = [int(stone) for stone in lines[0].split()]
+
+    # part two
+    print(dp_blink(stones, 75))
 
 
 if __name__ == '__main__':

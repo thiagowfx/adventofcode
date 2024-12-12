@@ -1,30 +1,35 @@
 #!/usr/bin/env python3
 import sys
+from functools import lru_cache
 
 def calibrate_one(test_value, operands):
-    def dp_calibrate(acc, operands):
-        if acc == test_value and len(operands) == 0:
+
+    @lru_cache(maxsize=None)
+    def dp_calibrate(acc, index):
+        if acc == test_value and index == len(operands):
             return True
 
-        if acc > test_value or len(operands) == 0:
+        if acc > test_value or index == len(operands):
             return False
 
-        return dp_calibrate(acc + operands[0], operands[1:]) or dp_calibrate(acc * operands[0], operands[1:])
+        return dp_calibrate(acc + operands[index], index + 1) or dp_calibrate(acc * operands[index], index + 1)
 
-    return dp_calibrate(operands[0], operands[1:])
+    return dp_calibrate(operands[0], 1)
 
 
 def calibrate_two(test_value, operands):
-    def dp_calibrate(acc, operands):
-        if acc == test_value and len(operands) == 0:
-            return True
 
-        if acc > test_value or len(operands) == 0:
+    @lru_cache(maxsize=None)
+    def dp_calibrate(acc, index):
+        if index == len(operands):
+            return acc == test_value
+
+        if acc > test_value:
             return False
 
-        return dp_calibrate(acc + operands[0], operands[1:]) or dp_calibrate(acc * operands[0], operands[1:]) or dp_calibrate(int(str(acc) + str(operands[0])), operands[1:])
+        return dp_calibrate(acc + operands[index], index + 1) or dp_calibrate(acc * operands[index], index + 1) or dp_calibrate(int(str(acc) + str(operands[index])), index + 1)
 
-    return dp_calibrate(operands[0], operands[1:])
+    return dp_calibrate(operands[0], 1)
 
 
 def main():

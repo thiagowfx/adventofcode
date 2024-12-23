@@ -6,7 +6,7 @@
 # Then:
 #   make DAY=1 DEBUG=0
 
-DAY ?= 8
+DAY ?= 9
 DEBUG ?= 1
 
 SAMPLE = day$(DAY)/sample.txt

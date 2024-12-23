@@ -3,7 +3,7 @@
 I've been blogging about my solutions.
 Start with Day 1) here: https://www.perrotta.dev/2024/12/advent-of-code-2024-day-1/
 
-![Completion Status](https://img.shields.io/badge/stars%20⭐-17/50-yellow)
+![Completion Status](https://img.shields.io/badge/stars%20⭐-18/50-yellow)
 
 The Chief Historian is always present for the big Christmas sleigh launch, but nobody has seen him in months! Last anyone heard, he was visiting locations that are historically significant to the North Pole; a group of Senior Historians has asked you to accompany them as they check the places they think he was most likely to visit.
 

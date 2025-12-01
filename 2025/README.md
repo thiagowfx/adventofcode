@@ -1,6 +1,6 @@
 # Advent of Code 2025 - My Solutions
 
-![Completion Status](https://img.shields.io/badge/stars%20⭐-1/24-yellow)
+![Completion Status](https://img.shields.io/badge/stars%20⭐-2/24-yellow)
 
 The Chief Historian is always present for the big Christmas sleigh launch, but nobody has seen him in months! Last anyone heard, he was visiting locations that are historically significant to the North Pole; a group of Senior Historians has asked you to accompany them as they check the places they think he was most likely to visit.
 
